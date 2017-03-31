@@ -8,13 +8,14 @@ public class wordsfornumbers {
 	{
 		Scanner sc = new Scanner(System.in);
 		ArrayList <String> ans= new ArrayList<String>();
-		int count=0;
+	
 		while (sc.hasNext())
 		{
 			String temp = sc.nextLine();
 			ans.add(temp);
-			count++;
 		}
+		
+		sc.close();
 		
 		Map <String, String> tensMap = new HashMap<String,String>();
 		Map <String, String> onesMap = new HashMap<String,String>();
