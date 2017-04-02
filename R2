@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class R2 {
+	public static void main (String[] args)
+	{
+		Scanner sc = new Scanner (System.in);
+		int R = sc.nextInt();
+		int S = sc.nextInt();
+		sc.close();
+		
+		int r2 = (S*2)-R;
+		
+		System.out.println(r2);
+	}
+
+}
