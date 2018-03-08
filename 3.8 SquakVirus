@@ -1,0 +1,90 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SquakVirus {
+	
+	public static void main (String[] args)
+	{
+		Scanner sc =new Scanner(System.in);
+		
+		int users = sc.nextInt();
+		int links = sc.nextInt();
+		int start = sc.nextInt();
+		int itt = sc.nextInt();
+	
+		BigInteger accum = BigInteger.valueOf(0);
+		
+		int[][] grid =new int[users][users];
+		BigInteger[] value = new BigInteger[users];
+		
+		ArrayList<Integer> infected = new ArrayList<Integer>();
+		infected.add(start);
+		
+		
+		for (int i=0;i<links;i++)
+		{
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			grid[x][y]=1;
+			grid[y][x]=1;
+		}
+		
+		BigInteger [] temp=new BigInteger [users];
+		for(int l=0;l<users; l++)
+		{
+			value[l]=BigInteger.valueOf(0);
+			temp[l]=BigInteger.valueOf(0);
+		}
+
+		
+		for (int i=0; i<itt ; i++)
+		{
+			for(int l=0; l<users; l++)
+			{
+				temp[l]=BigInteger.valueOf(0);
+			}
+			accum = BigInteger.valueOf(0);
+			int size = infected.size();
+			for (int j=0;j<size;j++)
+			{
+				int current = infected.get(j);
+				for (int z=0; z<users; z++)
+				{
+					if (grid[current][z]==1)
+					{
+						if(i==0)
+						{ 
+							temp[z]=temp[z].add(BigInteger.valueOf(1));
+							accum =accum.add(BigInteger.valueOf(1));
+						}else 
+						{
+							temp[z]=temp[z].add(value[current]);
+							accum=accum.add(value[current]);
+						}
+						if (!infected.contains(z))
+						{
+							infected.add(z);
+						}
+						
+					}
+					
+				}
+			}
+
+			for(int l=0;l<users; l++)
+			{
+				value[l]=temp[l];
+			}
+
+		
+		}
+		
+	
+		if(itt == 0)
+			accum=BigInteger.valueOf(1);
+
+		System.out.println(accum.toString());
+	}
+
+}
